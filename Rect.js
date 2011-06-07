@@ -34,7 +34,6 @@ define(function (require) {
             return this.position;
         } else {
             this.position = position;
-            this.dimensions = position.length;
         }
     };
     
@@ -42,7 +41,7 @@ define(function (require) {
         if (typeof size === 'undefined') {
             return this.size;
         } else {
-            this.position = size;
+            this.size = size;
         }
     };
     

@@ -65,7 +65,7 @@ define(function (require) {
                     if ((1 << j) & i) {
                         value += this.size[j];
                     }
-                    if (value < shape.point[j] || value > shape.point[j] +
+                    if (value <= shape.point[j] || value >= shape.point[j] +
                             shape.size[j]) {
                         found = false;
                         break;

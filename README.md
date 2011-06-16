@@ -24,10 +24,17 @@ Methods
 ### Intersections
 
     var geometry = require('geometry');
-    var ryan = geometry.Rect([10, 10], [20, 20]);
-    var karl = geometry.Rect([ 5,  5], [30, 30]);
+    var ryan = new geometry.Rect([10, 10], [20, 20]);
+    var karl = new geometry.Rect([ 5,  5], [30, 30]);
 
     console.log(ryan.intersects(karl)); // true
+
+### Cloning
+
+    var a = new geometry.Rect([10, 10], [20, 20]);
+    var b = a.clone();
+    
+    console.log(a == b); // false
 
 License
 -------

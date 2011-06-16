@@ -19,15 +19,13 @@
 /*jslint white: true, devel: false, onevar: true, browser: true, undef: false,
   nomen: false, regexp: true, plusplus: true, continue: true, bitwise: false,
   unparam: true, newcap: true, maxerr: 50, indent: 4 */
-define(function (require) {
-    var Point = require('./Point');
-
+define(['./Point'], function (Point) {
     function Rect(point, size) {
         this.point = point;
         this.size = size;
     }
 
-    Rect.prototype = Point;
+    Rect.prototype = Object.create(Point);
 
     Rect.prototype.pos = function (position) {
         if (typeof position === 'undefined') {
@@ -89,6 +87,10 @@ define(function (require) {
         }
         throw new Error('geometry.Rect does not know how to intersect with shape: ' +
                 shape);
+    };
+    
+    Rect.prototype.clone = function () {
+        return new Rect(this.point, this.size);
     };
     
     return Rect;

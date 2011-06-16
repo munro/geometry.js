@@ -20,39 +20,28 @@
   nomen: false, regexp: true, plusplus: true, continue: true, bitwise: true,
   unparam: true, newcap: true, maxerr: 50, indent: 4 */
 define(function (require) {
-    var Rect = require('./Rect'), Point;
-    
-    function pointDecorator(func) {
-        return function (point) {
-            if (typeof point === 'number') {
-                return func.call(this, Array.prototype.slice.call(arguments,
-                        0));
-            } else {
-                return func.call(this, point);
-            }
-        };
+    var Rect = require('./Rect');
+
+    function Point(point) {
+        this.point = point;
     }
 
-    Point = pointDecorator(function (point) {
-        this.point = point;
-    });
-
-    Point.prototype.position = pointDecorator(function (point) {
+    Point.prototype.position = function (point) {
         if (point) {
             this.point = point;
             return this;
         } else {
             return this.point;
         }
-    });
+    };
 
-    Point.prototype.translate = pointDecorator(function (point) {
+    Point.prototype.translate = function (point) {
         var i, dimensions = Math.min(this.point.length, point.length);
         for (i = 0; i < dimensions; i += 1) {
             this.point[i] += point[i];
         }
         return this;
-    });
+    };
 
     Point.prototype.intersects = function (shape, checked) {
         var i, dimensions;
@@ -89,6 +78,10 @@ define(function (require) {
         }
         throw new Error('geometry.Point does not know how to intersect with shape: ' +
                 shape);
+    };
+    
+    Point.prototype.clone = function () {
+        return new Point(this.point);
     };
     
     return Point;

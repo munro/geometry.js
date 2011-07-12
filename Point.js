@@ -1,6 +1,4 @@
-/* vim: ts=4 sw=4 sts=4 et:
- *
- * Copyright 2011 Ryan Munro.
+/* Copyright 2011 Ryan Munro.
  * http://github.com/munro/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*jslint white: true, devel: false, onevar: true, browser: true, undef: false,
-  nomen: false, regexp: true, plusplus: true, continue: true, bitwise: true,
-  unparam: true, newcap: true, maxerr: 50, indent: 4 */
 define(function (require) {
     var Rect = require('./Rect');
 
@@ -43,7 +38,7 @@ define(function (require) {
         return this;
     };
 
-    Point.prototype.intersects = function (shape, checked) {
+    Point.prototype.intersects = function (shape, reverse) {
         var i, dimensions;
         
         if (typeof shape === 'object') {
@@ -70,11 +65,8 @@ define(function (require) {
                 }
             }
             return true;
-        } else if (!checked && typeof shape.intersects === 'function') {
-            try {
-                return shape.intersects(this, true);
-            } catch (e) {
-            }
+        } else if (!reverse && typeof shape.intersects === 'function') {
+            return shape.intersects(this, true);
         }
         throw new Error('geometry.Point does not know how to intersect with shape: ' +
                 shape);
@@ -87,3 +79,7 @@ define(function (require) {
     return Point;
 });
 
+/*jslint white: true, devel: false, onevar: true, browser: true, undef: false,
+  nomen: false, regexp: true, plusplus: true, continue: true, bitwise: false,
+  unparam: true, newcap: true, maxerr: 50, indent: 4 */
+// vim: ts=4 sw=4 sts=4 et:

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 define(function (require) {
-    var Rect = require('./Rect');
+    var Box = require('./Box');
 
     function Point(point) {
         this.point = point;
@@ -57,7 +57,7 @@ define(function (require) {
                 }
             }
             return true;
-        } else if (shape instanceof Rect) {
+        } else if (shape instanceof Box) {
             for (i = 0; i < dimensions; i += 1) {
                 if (this.point[i] < shape.point[i] || this.point[i] >
                         (shape.size[i] + shape.point[i])) {

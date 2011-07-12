@@ -11,12 +11,12 @@ Creates a point in space.
     var geometry = require('geometry');
     var tmg = new geometry.Point([x, y, z, ...]);
 
-### Rect
+### Box
 
 Creates a box derived from a point.
 
     var geometry = require('geometry');
-    var foo = new geometry.Rect([x, y, z, ...], [width, height, depth, ...]); 
+    var foo = new geometry.Box([x, y, z, ...], [width, height, depth, ...]); 
 
 Methods
 -------
@@ -24,14 +24,14 @@ Methods
 ### Intersections
 
     var geometry = require('geometry');
-    var ryan = new geometry.Rect([10, 10], [20, 20]);
-    var karl = new geometry.Rect([ 5,  5], [30, 30]);
+    var ryan = new geometry.Box([10, 10], [20, 20]);
+    var karl = new geometry.Box([ 5,  5], [30, 30]);
 
     console.log(ryan.intersects(karl)); // true
 
 ### Cloning
 
-    var a = new geometry.Rect([10, 10], [20, 20]);
+    var a = new geometry.Box([10, 10], [20, 20]);
     var b = a.clone();
     
     console.log(a == b); // false

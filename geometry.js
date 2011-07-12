@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-define(['./Point', './Rect'], function (Point, Rect) {
+define(['./Point', './Box'], function (Point, Box) {
     return {
         Point: Point,
-        Rect: Rect
+        Box: Box
     };
 });
 

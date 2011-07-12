@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 define(['./Point'], function (Point) {
-    function Rect(point, size) {
+    function Box(point, size) {
         this.point = point;
         this.size = size;
     }
 
-    Rect.prototype = Object.create(Point);
+    Box.prototype = Object.create(Point);
 
-    Rect.prototype.pos = function (position) {
+    Box.prototype.pos = function (position) {
         if (typeof position === 'undefined') {
             return this.position;
         } else {
@@ -30,7 +30,7 @@ define(['./Point'], function (Point) {
         }
     };
     
-    Rect.prototype.size = function (size) {
+    Box.prototype.size = function (size) {
         if (typeof size === 'undefined') {
             return this.size;
         } else {
@@ -38,7 +38,7 @@ define(['./Point'], function (Point) {
         }
     };
     
-    Rect.prototype.intersects = function (shape, reverse) {
+    Box.prototype.intersects = function (shape, reverse) {
         var i, j, value, found, points, dimensions;
         
         if (typeof shape === 'object') {
@@ -48,7 +48,7 @@ define(['./Point'], function (Point) {
         
         if (shape instanceof Array) {
             return (new Point([shape])).intersects(this);
-        } else if (shape instanceof Rect) {
+        } else if (shape instanceof Box) {
             points = Math.pow(2, dimensions);
             for (i = 0; i < points; i += 1) {
                 found = true;
@@ -76,15 +76,15 @@ define(['./Point'], function (Point) {
         } else if (!reverse && typeof shape.intersects === 'function') {
             return shape.intersects(this, true);
         }
-        throw new Error('geometry.Rect does not know how to intersect with shape: ' +
+        throw new Error('geometry.Box does not know how to intersect with shape: ' +
                 shape);
     };
     
-    Rect.prototype.clone = function () {
-        return new Rect(this.point, this.size);
+    Box.prototype.clone = function () {
+        return new Box(this.point, this.size);
     };
     
-    return Rect;
+    return Box;
 });
 
 /*jslint white: true, devel: false, onevar: true, browser: true, undef: false,
